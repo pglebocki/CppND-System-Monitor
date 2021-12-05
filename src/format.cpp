@@ -6,8 +6,16 @@ using std::string;
 using std::to_string;
 
 string Format::ElapsedTime(long seconds) {
-  int hours = seconds / 3600;
-  int minutes = seconds / 60;
-  int sec = seconds % 60;
-  return to_string(hours) + ":" + to_string(minutes) + ":" + to_string(sec);
+  long hours = seconds / 3600;
+  long rHours = seconds % 3600;
+  long minutes = rHours / 60;
+  long secs = rHours % 60;
+  string sHours = to_string(hours);
+  string sMinutes = to_string(minutes);
+  string sSeconds = to_string(secs);
+
+  if (sHours.size() < 2) sHours = "0" + sHours;
+  if (sMinutes.size() < 2) sMinutes = "0" + sMinutes;
+  if (sSeconds.size() < 2) sSeconds = "0" + sSeconds;
+  return sHours + ":" + sMinutes + ":" + sSeconds;
 }
